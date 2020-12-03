@@ -46,5 +46,5 @@ app.use("/user", router);
 require(__dirname + "/controllers/userController")(router);
 
 //Définition et mise en place du port d'écoute
-const port = 3000;
+const port = 8800;
 app.listen(port, () => console.log(`Listening on port ${port}`));
