@@ -3,7 +3,7 @@ const headers = {
   "Content-Type": "application/json"
 };
 const burl = "http://localhost:8800";
-
+// eslint-disable-next-line 
 export default {
   login: function(email, password) {
     return axios.post(
