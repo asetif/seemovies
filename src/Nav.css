@@ -22,3 +22,13 @@
   left: 20px;
   object-fit: contain;
 }
+
+.button{
+  position: fixed;
+  right: 2%;
+}
+
+.register{
+  position: fixed;
+  right: 7%;
+}

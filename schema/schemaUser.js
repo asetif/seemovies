@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 const passwordHash = require("password-hash");
 const jwt = require("jwt-simple");
 const config = require("../config/configuration");
+
 const userSchema = mongoose.Schema(
   {
+
     email: {
       type: String,
       lowercase: true,
