@@ -9,7 +9,7 @@ const base_url = "http://image.tmdb.org/t/p/original/"
 
 function Row ({title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
-    const [trailerUrl, setTrailerUrl] =useState("")
+    const [trailerUrl, setTrailerUrl] = useState("")
 
     // snippet of code whith runs bases on a spesific condition/variable
     useEffect(() => { 
@@ -34,11 +34,12 @@ function Row ({title, fetchUrl, isLargeRow }) {
         if (trailerUrl) {
             setTrailerUrl('');
         }else {
-            movieTrailer(movie?.name || "")
+            movieTrailer(movie?.name && "")
                 .then((url) => {
                     //https://www.youtube.com/watch?v=XtMThy8QKqU
                     const urlParams = new URLSearchParams(new URL(url).search);
                     setTrailerUrl(urlParams.get('v'));
+                    console.log(url, setTrailerUrl)
                 })
                 .catch((error) => console.log(error));
 ;        }
@@ -52,7 +53,7 @@ function Row ({title, fetchUrl, isLargeRow }) {
                     <img
                       key={movie.id}
                       onClick = {() => handleClick(movie)}
-                      className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
+                      className={`row__poster ${isLargeRow && "row_posterLarge"}`} 
                       src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
                       alt={movie.name}
                     />
