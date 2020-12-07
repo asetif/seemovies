@@ -1,0 +1,20 @@
+[debug] [2020-12-04T14:52:10.506Z] ----------------------------------------------------------------------
+[debug] [2020-12-04T14:52:10.508Z] Command:       /usr/local/bin/node /usr/local/bin/firebase login
+[debug] [2020-12-04T14:52:10.508Z] CLI Version:   8.17.0
+[debug] [2020-12-04T14:52:10.508Z] Platform:      darwin
+[debug] [2020-12-04T14:52:10.509Z] Node Version:  v12.19.0
+[debug] [2020-12-04T14:52:10.511Z] Time:          Fri Dec 04 2020 15:52:10 GMT+0100 (GMT+01:00)
+[debug] [2020-12-04T14:52:10.511Z] ----------------------------------------------------------------------
+[debug] [2020-12-04T14:52:10.511Z] 
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[debug] [2020-12-04T16:03:49.743Z] ----------------------------------------------------------------------
+[debug] [2020-12-04T16:03:49.747Z] Command:       /usr/local/bin/node /usr/local/bin/firebase login
+[debug] [2020-12-04T16:03:49.748Z] CLI Version:   8.17.0
+[debug] [2020-12-04T16:03:49.748Z] Platform:      darwin
+[debug] [2020-12-04T16:03:49.748Z] Node Version:  v12.19.0
+[debug] [2020-12-04T16:03:49.751Z] Time:          Fri Dec 04 2020 17:03:49 GMT+0100 (GMT+01:00)
+[debug] [2020-12-04T16:03:49.752Z] ----------------------------------------------------------------------
+[debug] [2020-12-04T16:03:49.752Z] 
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
