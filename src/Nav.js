@@ -6,8 +6,8 @@ function Nav() {
   const[show, handleShow] = useState(false)
 
   useEffect(() => {
-      window.addEventListener("scorll", () => {
-        if(window.scrolly > 100){
+      window.addEventListener("scroll", () => {
+        if(window.scrollY > 100){
             handleShow(true);
         }else 
             handleShow(false);
@@ -16,23 +16,23 @@ function Nav() {
       return() => {
           window.removeEventListener("scroll");
       };
-  })
-
-
+  }, []);
     return(
         <div className={`nav ${show && "nav__black"}`}>
             <img
               className="nav__logo"
-              src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+              src="https://upload.wikimedia.org/wikipedia/commons/1/15/Logonfx.png"
               alt="Netflix logo"
             />
-        <div className='login'>
-            <button class='button' type="button" onclick="alert('Hello world!')">Login</button>
+
+            <div className="nav__button">
+                    <button className="banner__button">SignUp</button>
+                    <button className="banner__button">Login</button>
+            </div>
+
         </div>
-        <div className='register'>
-            <button class='register' type="button" onClick>Register</button>
-        </div>
-        </div>
+      
+     
 
      
         

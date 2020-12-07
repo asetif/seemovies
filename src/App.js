@@ -41,7 +41,9 @@ class App extends Component {
         fetchUrl={requests.fetchNetflixOriginals} 
         isLargeRow={true}
         />
-      <Row title = "Trending Now" fetchUrl={requests.fetchTrending}/>
+      <Row title = "Trending Now" fetchUrl={requests.fetchTrending}
+       isLargeRow={true}/>
+      
       <Row title=  "Action movies" fetchUrl = {requests.fetchActionMovies}/>
       <Row title=  "Comedy movies" fetchUrl = {requests.fetchComedyMovies}/>
       <Row title=  "horror movies" fetchUrl = {requests.fetchHoroorMovies}/>

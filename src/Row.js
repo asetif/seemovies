@@ -59,11 +59,12 @@ function Row ({title, fetchUrl, isLargeRow }) {
         if (trailerUrl) {
             setTrailerUrl('');
         }else {
-            movieTrailer(movie?.name || "")
+            movieTrailer(movie?.name && "")
                 .then((url) => {
                     //https://www.youtube.com/watch?v=XtMThy8QKqU
                     const urlParams = new URLSearchParams(new URL(url).search);
                     setTrailerUrl(urlParams.get('v'));
+                    console.log(url, setTrailerUrl)
                 })
                 .catch((error) => console.log(error));
 ;        }
