@@ -18,10 +18,7 @@ function Nav() {
       };
   })
 
-changePage(() => {
-    <Route exact path="/" component={Login} />
-    window.location = "/Login";
-}
+
     return(
         <div className={`nav ${show && "nav__black"}`}>
             <img
