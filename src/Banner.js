@@ -3,12 +3,24 @@ import axios from './axios';
 import requests from './Requests';
 import './Banner.css';
 
-function handleClick(user){
-    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-    })
+
+function handleClick(){    
+    
+    axios.get("http://localhost:8800/favoris/fav").then(response => {
+        console.log(response.data)
+      })
+
+    axios
+        .post("http://localhost:8800/favoris/fav", {
+          nameMovies: 'theo',
+          user_id: '2',
+        })
+        .then(() => {
+          console.log("Post successful!")
+        })
+        .catch(() => {
+          console.log("Oops, request failed!")
+        })
 }
 
 
@@ -26,7 +38,7 @@ function Banner() {
     }
     fetchDtata();
 },[])
-
+   
     console.log(movie)
    
     function truncate(str, n) {
@@ -49,7 +61,7 @@ function Banner() {
                 
                 <div className="banner__buttons">
                     <button className="banner__button">Play</button>
-                    <button className="banner__button" onClick={handleClick}>My List</button>
+                    <button className="banner__button" onClick={()=>handleClick()}>My List</button>
                 </div>
 
                 <h1 className="banner__description">
