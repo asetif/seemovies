@@ -33,25 +33,31 @@ function Row ({title, fetchUrl, isLargeRow }) {
         }
     };
 
-    function displayTrailer(movieTitle) {
-        if (movieTitle !== undefined) {
-            const newName = movieTitle.toString().replace(/ /g, '_');
-            const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAgusoGBmu9n985bgDid0WBwT28dXelZu4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
+    function displayTrailer(movieTitle, movieName) {
+        let movieStrID;
+        if (movieName !== undefined) {
+            movieStrID = movieName
+        } else if (movieTitle !== undefined) {
+            movieStrID = movieTitle;
+        } else {
+            console.log("c'est vide");
+            return;
+        }
+        console.log(movieStrID)
+        const newName = movieStrID.toString().replace(/ /g, '_');
+        const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAgusoGBmu9n985bgDid0WBwT28dXelZu4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
             .then(response => {
-                for (var i in response.data.items){
-                var item = response.data.items[i];
-                console.log("videoId : ", item.id.videoId);
-                const fullURL = "https://www.youtube.com/watch?v="+item.id.videoId
-                setTrailerURL(fullURL);
-                return (item.id.videoId);
+                for (let i in response.data.items){
+                    let item = response.data.items[i];
+                    console.log("videoId : ", item.id.videoId);
+                    const fullURL = "https://www.youtube.com/watch?v="+item.id.videoId
+                    setTrailerURL(fullURL);
+                    return (item.id.videoId);
                 }
             })
             .catch(error =>{
                 console.log(error);
             });
-        }
-        else 
-            console.log("c'est vide");
     }
 
     /*const handleClick = (movie) => {
@@ -77,7 +83,7 @@ function Row ({title, fetchUrl, isLargeRow }) {
                     <img
                       key={movie.id}
                       //onClick = {() => handleClick(movie)}
-                      onClick = {()=>displayTrailer(movie.title)}
+                      onClick = {()=>displayTrailer(movie.title, movie.name)}
                       className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
                       src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
                       alt={movie.title}

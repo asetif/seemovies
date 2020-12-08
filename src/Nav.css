@@ -1,5 +1,6 @@
 .nav {
   position: fixed;
+<<<<<<< HEAD
   top: 0;
   width: 100%;
   padding: 2%;
@@ -8,6 +9,10 @@
   display: flex;
   justify-content: space-between;
 
+=======
+  width: 100%;
+  z-index: 999;
+>>>>>>> origin/Anthony-title-and-title
   /*Animation*/
   transition-timing-function: ease-in;
   transition: all 0.5s;
@@ -17,11 +22,36 @@
   background-color: #111;
 }
 
+.nav_inside {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 20px 0;
+  height: 8%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .nav__logo {
+<<<<<<< HEAD
   position: fixed;
   width: 8%;
   left: 2%;
+=======
+>>>>>>> origin/Anthony-title-and-title
   object-fit: contain;
+  width: 20%;
+  max-height: 31px;
+}
+
+.button{
+  position: fixed;
+  right: 2%;
+}
+
+.register{
+  position: fixed;
+  right: 7%;
 }
 
 .button{
@@ -35,8 +65,11 @@
 }
 .nav__button {
   display: flex;
+<<<<<<< HEAD
   position: fixed;
   right: 13%;
   width: 30px;
+=======
+>>>>>>> origin/Anthony-title-and-title
   object-fit: contain;
 }

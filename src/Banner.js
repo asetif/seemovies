@@ -4,6 +4,7 @@ import requests from './Requests';
 import './Banner.css';
 
 
+<<<<<<< HEAD
 function handleClick(){    
     
     axios.get("http://localhost:8800/favoris/fav").then(response => {
@@ -24,6 +25,11 @@ function handleClick(){
 }
 
 
+=======
+function handleClick(){
+ 
+}
+>>>>>>> origin/Anthony-title-and-title
 function Banner() {
     const [movie, setMovie]= useState([]);
 
@@ -55,18 +61,23 @@ function Banner() {
            }}
         >
             <div className="banner__contents">
-                <h1 className="banner__title">
+                <h2 className="banner__title">
                     {movie?.title || movie?.name || movie?.original_name}
-                </h1>
+                </h2>
                 
                 <div className="banner__buttons">
+<<<<<<< HEAD
                     <button className="banner__button">Play</button>
                     <button className="banner__button" onClick={()=>handleClick()}>My List</button>
+=======
+                    <button className="banner__button banner__button__left">Play</button>
+                    <button className="banner__button" onClick={handleClick}>My List</button>
+>>>>>>> origin/Anthony-title-and-title
                 </div>
 
-                <h1 className="banner__description">
+                <h2 className="banner__description">
                     {truncate(movie?.overview, 150)}
-                </h1>
+                </h2>
 
             </div>
             

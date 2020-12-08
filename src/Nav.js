@@ -19,6 +19,7 @@ function Nav() {
   }, []);
     return(
         <div className={`nav ${show && "nav__black"}`}>
+<<<<<<< HEAD
             <img
               className="nav__logo"
               src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
@@ -27,7 +28,21 @@ function Nav() {
 
             <div className="nav__button">
                     <button className="banner__button">SignUp</button>
+=======
+            <h1 id={"nav__title"}>
+                NETFLIX
+            </h1>
+            <div className={`nav_inside`}>
+                <img
+                    className="nav__logo"
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                    alt="Netflix logo"
+                />
+                <div className="nav__button">
+                    <button className="banner__button banner__button__left">SignUp</button>
+>>>>>>> origin/Anthony-title-and-title
                     <button className="banner__button">Login</button>
+                </div>
             </div>
 
         </div>
