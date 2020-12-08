@@ -37,7 +37,7 @@ class App extends Component {
       <Nav/> 
      <Banner/>
       <Row 
-        title = "NETFLIX ORIGINALS"
+        title = {["NETFLIX Trending", "NETFLIX Originals", "Action movies", "Comedy movies", "Horror movies", "Romances", "Documentaries"]}
         fetchUrl={requests}
         isLargeRow={true}
         />

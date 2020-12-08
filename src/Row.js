@@ -4,6 +4,7 @@ import "./Row.css";
 import Youtube from "react-youtube";
 import ReactPlayer from "react-player";
 import movieTrailer from "movie-trailer";
+import requests from './Requests';
 
 
 const base_url = "http://image.tmdb.org/t/p/original/"
@@ -75,7 +76,7 @@ function Row ({title, fetchUrl, isLargeRow }) {
             console.log("c'est vide");
     }
 
-    console.log(movies);
+    //console.log(movies);
 
     /*const handleClick = (movie) => {
         if (trailerUrl) {
@@ -93,23 +94,27 @@ function Row ({title, fetchUrl, isLargeRow }) {
     };*/
     return (
         <div>
-                {console.log(movies)}
-                {movies.map((movieArray)=>{
+                <ReactPlayer
+                    url={videoURL}
+                    width="100%"
+                />
+                {movies.map((movieArray, i)=>{
                     return (
                         <div className="row">
+                            {title[i]}
                             <div className="row__posters">
-                        {movieArray.map((movie)=>{
-                        return <img
-                        key={movie.id}
-                        onClick = {()=>displayTrailer(movie.name)}
-                        className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
-                        src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
-                        alt={movie.name}
-                        >
-                        </img>
-                    })}
-                    </div>
-                    </div>
+                                {movieArray.map((movie)=>{
+                                    return <img
+                                            key={movie.id}
+                                            onClick = {()=>displayTrailer(movie.name)}
+                                            className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
+                                            src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
+                                            alt={movie.name}
+                                            >
+                                            </img>
+                                })}
+                            </div>
+                        </div>
                     )
                 })}
         </div>
