@@ -3,8 +3,12 @@ import axios from './axios';
 import requests from './Requests';
 import './Banner.css';
 
-function handleClick(){
- 
+function handleClick(user){
+    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
 }
 
 

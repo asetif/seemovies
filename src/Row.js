@@ -33,9 +33,9 @@ function Row ({title, fetchUrl, isLargeRow }) {
         }
     };
 
-    function displayTrailer(movieName) {
-        if (movieName != undefined) {
-            const newName = movieName.toString().replace(/ /g, '_');
+    function displayTrailer(movieTitle) {
+        if (movieTitle !== undefined) {
+            const newName = movieTitle.toString().replace(/ /g, '_');
             const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAgusoGBmu9n985bgDid0WBwT28dXelZu4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
             .then(response => {
                 for (var i in response.data.items){
@@ -77,10 +77,10 @@ function Row ({title, fetchUrl, isLargeRow }) {
                     <img
                       key={movie.id}
                       //onClick = {() => handleClick(movie)}
-                      onClick = {()=>displayTrailer(movie.name)}
+                      onClick = {()=>displayTrailer(movie.title)}
                       className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
                       src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
-                      alt={movie.name}
+                      alt={movie.title}
                     />
             ))}
             </div>
