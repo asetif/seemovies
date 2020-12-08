@@ -3,10 +3,11 @@ import axios from './axios';
 import requests from './Requests';
 import './Banner.css';
 
-
 function handleClick(){
  
 }
+
+
 function Banner() {
     const [movie, setMovie]= useState([]);
 
@@ -52,7 +53,7 @@ function Banner() {
                 </h1>
 
             </div>
-            <div className="banner--fadeBottom"/>
+            
        </header>
     )
 }

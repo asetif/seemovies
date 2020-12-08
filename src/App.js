@@ -29,6 +29,11 @@ import requests from './Requests';
 import Row from './Row';
 import Banner from './Banner';
 import Nav from './Nav';
+import { Route, Switch } from "react-router-dom";
+import { Dashboard } from "./components/Dashboard/Dashboard.js";
+import { Login } from "./components/Login/Login.js";
+import { Signup } from "./components/Signup/Signup.js";
+import { PrivateRoute } from "./components/PrivateRoute.js";
 
 class App extends Component {
   render() {
@@ -49,7 +54,13 @@ class App extends Component {
       <Row title=  "horror movies" fetchUrl = {requests.fetchHoroorMovies}/>
       <Row title=  "Romance movies" fetchUrl = {requests.fetchRomenceMovies}/>
       <Row title=  "Documentaries" fetchUrl = {requests.fetchDocumentaries}/>    
-    
+      <div className="App-content">
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+          </Switch>
+        </div>
      </div>
      
     );
