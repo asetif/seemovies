@@ -1,18 +1,7 @@
 .nav {
   position: fixed;
-<<<<<<< HEAD
-  top: 0;
-  width: 100%;
-  padding: 2%;
-  height: 8%;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-
-=======
   width: 100%;
   z-index: 999;
->>>>>>> origin/Anthony-title-and-title
   /*Animation*/
   transition-timing-function: ease-in;
   transition: all 0.5s;
@@ -33,12 +22,6 @@
 }
 
 .nav__logo {
-<<<<<<< HEAD
-  position: fixed;
-  width: 8%;
-  left: 2%;
-=======
->>>>>>> origin/Anthony-title-and-title
   object-fit: contain;
   width: 20%;
   max-height: 31px;
@@ -65,11 +48,5 @@
 }
 .nav__button {
   display: flex;
-<<<<<<< HEAD
-  position: fixed;
-  right: 13%;
-  width: 30px;
-=======
->>>>>>> origin/Anthony-title-and-title
   object-fit: contain;
 }
