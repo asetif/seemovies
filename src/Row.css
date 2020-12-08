@@ -17,6 +17,7 @@
 }
 
 .row {
+  color: white;
   margin-left: 20px;
 }
 
@@ -32,3 +33,5 @@
   transform: scale(1.09);
   opacity: 1;
 }
+
+
