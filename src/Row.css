@@ -4,7 +4,7 @@
   overflow-x: scroll;
   padding: 20px;
 }
-.ro__poster::-webkit-scrolbar {
+.row__poster::-webkit-scrolbar {
   display: none;
 }
 

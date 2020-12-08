@@ -24,6 +24,15 @@
   object-fit: contain;
 }
 
+.button{
+  position: fixed;
+  right: 2%;
+}
+
+.register{
+  position: fixed;
+  right: 7%;
+}
 .nav__button {
   display: flex;
   position: fixed;
