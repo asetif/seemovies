@@ -45,7 +45,7 @@ function Row ({title, fetchUrl, isLargeRow }) {
         }
         console.log(movieStrID)
         const newName = movieStrID.toString().replace(/ /g, '_');
-        const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAgusoGBmu9n985bgDid0WBwT28dXelZu4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
+        const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyD4yRGr5i1ca4FKghWm8EIHUFEYi8hzqY4type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
             .then(response => {
                 for (let i in response.data.items){
                     let item = response.data.items[i];
