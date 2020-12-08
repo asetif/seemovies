@@ -45,21 +45,6 @@ app.use(function(req, res, next) {
 //Définition du routeur
 const router = express.Router();
 
-app.get('/youtube',(req, res)=>{
-  const theo = 'batman';
-  axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyBzIfpwfzf4J2FkiGaZUgAywdL0QZ_3RNA&type=video&part=snippet&maxResults=1&q=" + theo + "_trailer")
-  .then(response => {
-    for (var i in response.data.items){
-      var item = response.data.items[i];
-      console.log("title : ", item.id.videoId);
-      return (item.id.videoId);
-    }
-  })
-  .cath(error =>{
-    console.log(error);
-  });
-})
-
 app.use("/user", router);
 require("./controllers/userController")(router);
 

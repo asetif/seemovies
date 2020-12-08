@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 
 const favorisSchema = mongoose.Schema(
   {
+    id:{
+      type: String,
+      require: true
+    },
     nameMovies: {
       type: String,
-      lowercase: true,
-      trim: true,
-      unique: true,
       required: true
     },
     user_id: {
