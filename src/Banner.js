@@ -3,6 +3,10 @@ import axios from './axios';
 import requests from './Requests';
 import './Banner.css';
 
+
+function handleClick(){
+ 
+}
 function Banner() {
     const [movie, setMovie]= useState([]);
 
@@ -40,7 +44,7 @@ function Banner() {
                 
                 <div className="banner__buttons">
                     <button className="banner__button">Play</button>
-                    <button className="banner__button">My List</button>
+                    <button className="banner__button" onClick={handleClick}>My List</button>
                 </div>
 
                 <h1 className="banner__description">

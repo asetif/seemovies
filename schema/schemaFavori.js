@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const favoriSchema = mongoose.Schema(
   {
 
-    name: {
+    nameMovies: {
       type: String,
       lowercase: true,
       trim: true,

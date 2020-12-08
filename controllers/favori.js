@@ -1,6 +1,6 @@
 import API from "../../utils/API";
 
-module.exports = function createFavoris(name){
+function createFavoris(name){
 
 const favori = require("../../schema/schemaFavori.js");
 const users = require("../../schema/schemaUser.js");
@@ -15,8 +15,7 @@ async createFavoris ({name}) {
     })
         return {}
         }
-    }
-    
+    }    
 }
 else{
     console.log("t'es pas connecter bg")

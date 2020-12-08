@@ -3,7 +3,6 @@ import axios from "./axios";
 import "./Row.css";
 import Youtube from "react-youtube";
 import ReactPlayer from "react-player";
-import movieTrailer from "movie-trailer";
 
 
 const base_url = "http://image.tmdb.org/t/p/original/"
@@ -88,7 +87,6 @@ function Row ({title, fetchUrl, isLargeRow }) {
             <ReactPlayer
                 url={videoURL}
             />
-                {<Youtube videoId = {displayTrailer} opts={opts}/>}
             </div>
     );
 }
