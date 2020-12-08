@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
 
-const favoriSchema = mongoose.Schema(
+const favorisSchema = mongoose.Schema(
   {
-
+    id:{
+      type: String,
+      require: true
+    },
     nameMovies: {
       type: String,
-      lowercase: true,
-      trim: true,
-      unique: true,
       required: true
     },
     user_id: {
@@ -20,4 +20,4 @@ const favoriSchema = mongoose.Schema(
 );
 
 
-module.exports = mongoose.model("favoris", favoriSchema);
+module.exports = mongoose.model("FavorisModel", favorisSchema);
