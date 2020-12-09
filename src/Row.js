@@ -64,19 +64,6 @@ function Row ({title, fetchUrl, isLargeRow }) {
             return;
         }
         console.log(movieStrID)
-<<<<<<< HEAD
-            const newName = movieStrID.toString().replace(/ /g, '_');
-            const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyCBM5qMqMryNfzGMvNW2ICKiPCMY3Z2ZY4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
-            .then(response => {
-                for (var i in response.data.items){
-                var item = response.data.items[i];
-                console.log("videoId : ", item.id.videoId);
-                const fullURL = "https://www.youtube.com/watch?v="+item.id.videoId
-                setTrailerURL(fullURL);
-                setStyle("display: block") 
-                //document.getElementById("player").classList.add('block');
-                return (item.id.videoId);
-=======
         const newName = movieStrID.toString().replace(/ /g, '_');
         const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyBAf3iuq-7jHcVQKrKq_M2zBv_vcAtt5qM&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
             .then(response => {
@@ -86,7 +73,6 @@ function Row ({title, fetchUrl, isLargeRow }) {
                     const fullURL = "https://www.youtube.com/watch?v="+item.id.videoId
                     setTrailerURL(fullURL);
                     return (item.id.videoId);
->>>>>>> f5f3ab468a46f846b52dac4b282b1ecdd25ab975
                 }
             })
             .catch(error =>{
@@ -116,7 +102,7 @@ function Row ({title, fetchUrl, isLargeRow }) {
                 <ReactPlayer
                     url={videoURL}
                     width="100%"
-                    style = {style}
+                    //style = {style}
                 />
             </div>
                 {movies.map((movieArray, i)=>{
