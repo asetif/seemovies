@@ -11,8 +11,7 @@ const base_url = "http://image.tmdb.org/t/p/original/"
 
 function Row ({title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
-    const [actMovies, setActMovies] = useState();
-    //const [trailerUrl, setTrailerUrl] =useState("");
+    const [style, setStyle] = useState("display: none")
     const [videoURL, setTrailerURL] = useState('');
 
     // snippet of code whith runs bases on a spesific condition/variable
@@ -55,9 +54,18 @@ function Row ({title, fetchUrl, isLargeRow }) {
     }, []);
 
 
-    function displayTrailer(movieName) {
-        if (movieName != undefined) {
-            const newName = movieName.toString().replace(/ /g, '_');
+    function displayTrailer(movieTitle, movieName) {
+        let movieStrID;
+        if (movieName !== undefined) {
+            movieStrID = movieName
+        } else if (movieTitle !== undefined) {
+            movieStrID = movieTitle;
+        } else {
+            console.log("c'est vide");
+            return;
+        }
+        console.log(movieStrID)
+            const newName = movieStrID.toString().replace(/ /g, '_');
             const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyCBM5qMqMryNfzGMvNW2ICKiPCMY3Z2ZY4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
             .then(response => {
                 for (var i in response.data.items){
@@ -65,15 +73,14 @@ function Row ({title, fetchUrl, isLargeRow }) {
                 console.log("videoId : ", item.id.videoId);
                 const fullURL = "https://www.youtube.com/watch?v="+item.id.videoId
                 setTrailerURL(fullURL);
+                setStyle("display: block") 
+                //document.getElementById("player").classList.add('block');
                 return (item.id.videoId);
                 }
             })
             .catch(error =>{
                 console.log(error);
             });
-        }
-        else 
-            console.log("c'est vide");
     }
 
     //console.log(movies);
@@ -94,19 +101,22 @@ function Row ({title, fetchUrl, isLargeRow }) {
     };*/
     return (
         <div>
+            <div>
                 <ReactPlayer
                     url={videoURL}
                     width="100%"
+                    style = {style}
                 />
+            </div>
                 {movies.map((movieArray, i)=>{
                     return (
-                        <div className="row">
-                            {title[i]}
+                        <div id="row">
+                            <h1>{title[i]}</h1>
                             <div className="row__posters">
                                 {movieArray.map((movie)=>{
                                     return <img
                                             key={movie.id}
-                                            onClick = {()=>displayTrailer(movie.name)}
+                                            onClick = {()=>displayTrailer(movie.name, movie.title)}
                                             className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
                                             src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
                                             alt={movie.name}
