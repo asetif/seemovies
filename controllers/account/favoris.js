@@ -1,17 +1,18 @@
 const FavorisModel = require("../../schema/schemaFavori.js");
+const users = require("../../schema/schemaUser.js");
 
-
-async function favorisInsert(req, res) {
+async function favorisInsert(req, res, authtoken) {
+  var user = await users.findOne({ token: authtoken._id})
   const { nameMovies, user_id } = req.body;
     const favoris = {
         nameMovies,
-        user_id
+        user_id: user
       };
       // On check en base si le favmovies pour l'utilisateur existe déjà
       try {
         const findFav = await FavorisModel.findOne({
           nameMovies,
-          user_id,
+          user,
         });
         if (findFav) {
           return res.status(400).json({

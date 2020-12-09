@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 import axios from './axios';
 import requests from './Requests';
 import './Banner.css';
-
+import API from "./utils/API.js";
 
 function handleClick(){    
-    
+    if (API.isAuth() === false) {
     axios.get("http://localhost:8800/favoris/fav").then(response => {
         console.log(response.data)
       })
@@ -13,7 +13,6 @@ function handleClick(){
     axios
         .post("http://localhost:8800/favoris/fav", {
           nameMovies: 'theo',
-          user_id: '2',
         })
         .then(() => {
           console.log("Post successful!")
@@ -21,6 +20,10 @@ function handleClick(){
         .catch(() => {
           console.log("Oops, request failed!")
         })
+    }
+    else{
+        console.log("tu n'es pas connecter")
+    }
 }
 
 
