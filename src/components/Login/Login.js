@@ -10,7 +10,7 @@ export class Login extends React.Component {
   send = async () => {
     const { email, password } = this.state;
     if (!email || email.length === 0) {
-      return;
+      return; 
     }
     if (!password || password.length === 0) {
       return;

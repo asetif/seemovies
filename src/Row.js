@@ -3,35 +3,56 @@ import axios from "./axios";
 import "./Row.css";
 import Youtube from "react-youtube";
 import ReactPlayer from "react-player";
+import requests from './Requests';
 
 
 const base_url = "http://image.tmdb.org/t/p/original/"
 
 function Row ({title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
+    const [actMovies, setActMovies] = useState();
     //const [trailerUrl, setTrailerUrl] =useState("");
-    const [videoURL, setTrailerURL] = useState('');
+    var [videoURL, setTrailerURL] = useState('');
 
     // snippet of code whith runs bases on a spesific condition/variable
     useEffect(() => { 
     // if [], run once when the row loads, and dont run again
-    async function fetchData(){
+    /*async function fetchData(){
         const request = await axios.get(fetchUrl);    
         setMovies(request.data.results);
         return request;
+    }*/
+    /*async function fetchData(){
+        console.log(fetchUrl);
+        const arrayObj = Object.values(fetchUrl);
+        console.log(arrayObj);
+        arrayObj.forEach((element)=>{
+            console.log(element);
+        })
+        //setMovies(request.data.results);
+        //return request;
+
     }
     fetchData();
-    }, [fetchUrl]);
-    
+    }, [fetchUrl]);*/
 
-    const opts = {
-        height: "390",
-        width: "100%",
-        playerVars: {
-            //https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
+    async function fetchData() {
+        const arrayObj = Object.values(fetchUrl);
+        const arrayResults = [];
+        for (let element of arrayObj){
+            try {
+                var result = await axios.get(element);
+                arrayResults.push(result.data.results);
+            }
+            catch(e){
+                console.log(e.message);
+            }
         }
-    };
+        setMovies(arrayResults);
+    }
+    fetchData();
+    }, []);
+
 
     function displayTrailer(movieTitle, movieName) {
         let movieStrID;
@@ -45,7 +66,7 @@ function Row ({title, fetchUrl, isLargeRow }) {
         }
         console.log(movieStrID)
         const newName = movieStrID.toString().replace(/ /g, '_');
-        const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyAgusoGBmu9n985bgDid0WBwT28dXelZu4&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
+        const request = axios.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyBAf3iuq-7jHcVQKrKq_M2zBv_vcAtt5qM&type=video&part=snippet&maxResults=1&q="+newName+"_trailer")
             .then(response => {
                 for (let i in response.data.items){
                     let item = response.data.items[i];
@@ -58,8 +79,9 @@ function Row ({title, fetchUrl, isLargeRow }) {
             .catch(error =>{
                 console.log(error);
             });
-
     }
+
+    //console.log(movies);
 
     /*const handleClick = (movie) => {
         if (trailerUrl) {
@@ -75,7 +97,58 @@ function Row ({title, fetchUrl, isLargeRow }) {
                 .catch((error) => console.log(error));
 ;        }
     };*/
+
+
+
+
+    /*
+    RETURN
+        FNCTION PLAYER
+        FNCTION RESTE
+     */
+
+    function testRowPlayer() {
+        if (videoURL !== "") {
+            return (
+                <div>
+                    <ReactPlayer
+                        url={videoURL}
+                        width="100%"
+                    />
+                </div>
+            );
+        } else {
+            return undefined
+        }
+    }
+
     return (
+        <div>
+            { testRowPlayer() }
+            <div>
+                {movies.map((movieArray, i)=>{
+                    return (
+                        <div className="row">
+                            {title[i]}
+                            <div className="row__posters">
+                                {movieArray.map((movie)=>{
+                                    return <img
+                                        key={movie.id}
+                                        onClick = {()=>displayTrailer(movie.name, movie.title)}
+                                        className={`row__poster ${isLargeRow && "row_posteLarge"}`}
+                                        src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`}
+                                        alt={movie.name}
+                                    >
+                                    </img>
+                                })}
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
+
+        /*
         <div className="row">
            <h2>{title}</h2>
 
@@ -93,8 +166,11 @@ function Row ({title, fetchUrl, isLargeRow }) {
             </div>
             <ReactPlayer
                 url={videoURL}
+                width="100%"
             />
+            
             </div>
+                */
     );
 }
 

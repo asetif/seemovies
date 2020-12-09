@@ -23,7 +23,9 @@
 
 .nav__logo {
   object-fit: contain;
+  /*
   width: 20%;
+  */
   max-height: 31px;
 }
 
@@ -37,6 +39,15 @@
   right: 7%;
 }
 
+.button{
+  position: fixed;
+  right: 2%;
+}
+
+.register{
+  position: fixed;
+  right: 7%;
+}
 .nav__button {
   display: flex;
   object-fit: contain;

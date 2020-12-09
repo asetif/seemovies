@@ -39,28 +39,22 @@ class App extends Component {
   render() {
   return (
     <div className="app">
-      <Nav/>
+      <Nav/> 
      <Banner/>
       <Row 
-        title = "NETFLIX ORIGINALS"
-        fetchUrl={requests.fetchNetflixOriginals} 
+        title = {["NETFLIX Trending", "NETFLIX Originals", "Action movies", "Comedy movies", "Horror movies", "Romances", "Documentaries"]}
+        fetchUrl={requests}
         isLargeRow={true}
         />
-      <Row title = "Trending Now" fetchUrl={requests.fetchTrending}
+      {/*<Row title = "Trending Now" fetchUrl={requests.fetchTrending}
        isLargeRow={true}/>
       
       <Row title=  "Action movies" fetchUrl = {requests.fetchActionMovies}/>
       <Row title=  "Comedy movies" fetchUrl = {requests.fetchComedyMovies}/>
       <Row title=  "horror movies" fetchUrl = {requests.fetchHoroorMovies}/>
       <Row title=  "Romance movies" fetchUrl = {requests.fetchRomenceMovies}/>
-      <Row title=  "Documentaries" fetchUrl = {requests.fetchDocumentaries}/>    
-      <div className="App-content">
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-          </Switch>
-        </div>
+      <Row title=  "Documentaries" fetchUrl = {requests.fetchDocumentaries}/>*/}  
+    
      </div>
      
     );
