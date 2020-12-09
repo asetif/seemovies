@@ -2,6 +2,30 @@ import React, {useEffect, useState} from 'react'
 import axios from './axios';
 import requests from './Requests';
 import './Banner.css';
+import API from "./utils/API.js";
+
+function handleClick(){    
+    if (API.isAuth() === false) {
+    axios.get("http://localhost:8800/favoris/fav").then(response => {
+        console.log(response.data)
+      })
+
+    axios
+        .post("http://localhost:8800/favoris/fav", {
+          nameMovies: 'theo',
+        })
+        .then(() => {
+          console.log("Post successful!")
+        })
+        .catch(() => {
+          console.log("Oops, request failed!")
+        })
+    }
+    else{
+        console.log("tu n'es pas connecter")
+    }
+}
+
 
 function Banner() {
     const [movie, setMovie]= useState([]);
@@ -17,7 +41,7 @@ function Banner() {
     }
     fetchDtata();
 },[])
-
+   
     console.log(movie)
    
     function truncate(str, n) {
@@ -34,18 +58,18 @@ function Banner() {
            }}
         >
             <div className="banner__contents">
-                <h1 className="banner__title">
+                <h2 className="banner__title">
                     {movie?.title || movie?.name || movie?.original_name}
-                </h1>
+                </h2>
                 
                 <div className="banner__buttons">
                     <button className="banner__button">Play</button>
-                    <button className="banner__button">My List</button>
+                    <button className="banner__button" onClick={()=>handleClick()}>My List</button>
                 </div>
 
-                <h1 className="banner__description">
+                <h2 className="banner__description">
                     {truncate(movie?.overview, 150)}
-                </h1>
+                </h2>
 
             </div>
        </header>

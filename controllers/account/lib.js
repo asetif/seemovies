@@ -12,7 +12,9 @@ async function signup(req, res) {
   // Création d'un objet user, dans lequel on hash le mot de passe
   const user = {
     email,
-    password: passwordHash.generate(password)
+    password: passwordHash.generate(password),
+    
+    
   };
   // On check en base si l'utilisateur existe déjà
   try {
@@ -48,6 +50,7 @@ async function login(req, res) {
       text: "Requête invalide"
     });
   }
+
   try {
     // On check si l'utilisateur existe en base
     const findUser = await User.findOne({ email });
@@ -61,7 +64,8 @@ async function login(req, res) {
       });
     return res.status(200).json({
       token: findUser.getToken(),
-      text: "Authentification réussi"
+      text: "Authentification réussi",
+      authToken: User.authToken 
     });
   } catch (error) {
     return res.status(500).json({
