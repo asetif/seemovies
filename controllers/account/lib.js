@@ -52,6 +52,7 @@ async function login(req, res) {
   }
 
   try {
+      console.log('theo')
     // On check si l'utilisateur existe en base
     const findUser = await User.findOne({ email });
     if (!findUser)

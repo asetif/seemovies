@@ -4,7 +4,8 @@ import requests from './Requests';
 import './Banner.css';
 import API from "./utils/API.js";
 
-function handleClick(){    
+function handleClick(movies){    
+    console.log(movies);
     if (API.isAuth() === false) {
     axios.get("http://localhost:8800/favoris/fav").then(response => {
         console.log(response.data)
@@ -12,7 +13,7 @@ function handleClick(){
 
     axios
         .post("http://localhost:8800/favoris/fav", {
-          nameMovies: 'theo',
+          nameMovies: movies,
         })
         .then(() => {
           console.log("Post successful!")
@@ -20,8 +21,7 @@ function handleClick(){
         .catch(() => {
           console.log("Oops, request failed!")
         })
-    }
-    else{
+    }else{
         console.log("tu n'es pas connecter")
     }
 }
@@ -64,7 +64,7 @@ function Banner() {
                 
                 <div className="banner__buttons">
                     <button className="banner__button">Play</button>
-                    <button className="banner__button" onClick={()=>handleClick()}>My List</button>
+                    <button className="banner__button" onClick={()=>handleClick(movie?.title || movie?.name || movie?.original_name)}>My List</button>
                 </div>
 
                 <h2 className="banner__description">

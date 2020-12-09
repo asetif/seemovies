@@ -46,6 +46,7 @@ class App extends Component {
         fetchUrl={requests}
         isLargeRow={true}
         />
+       
       {/*<Row title = "Trending Now" fetchUrl={requests.fetchTrending}
        isLargeRow={true}/>
       
