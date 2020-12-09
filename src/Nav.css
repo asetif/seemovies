@@ -23,7 +23,9 @@
 
 .nav__logo {
   object-fit: contain;
+  /*
   width: 20%;
+  */
   max-height: 31px;
 }
 

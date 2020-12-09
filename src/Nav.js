@@ -46,37 +46,39 @@ function Nav() {
   };
     return(
         <div className={`nav ${show && "nav__black"}`}>
-            <img
-              className="nav__logo"
-              src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-              alt="Netflix logo"
-            />
+            <div className="nav_inside">
+                <img
+                    className="nav__logo"
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                    alt="Netflix logo"
+                />
 
-            <div className="nav__button">
+                <div className="nav__button">
                     <button className="banner__button" >Sign Up</button>
                     <button className="banner__button"onClick={handleOpen}>Login</button>
                     <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500
-        }}
-      >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        className={classes.modal}
+                        open={open}
+                        onClose={handleClose}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                            timeout: 500
+                        }}
+                    >
+                        <Fade in={open}>
+                            <div className={classes.paper}>
+                                <h2 id="transition-modal-title">Transition modal</h2>
 
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p>
-          </div>
-        </Fade>
-      </Modal>
+                                <p id="transition-modal-description">
+                                    react-transition-group animates me.
+                                </p>
+                            </div>
+                        </Fade>
+                    </Modal>
+                </div>
             </div>
 
         </div>
