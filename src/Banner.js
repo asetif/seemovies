@@ -69,7 +69,6 @@ function Banner() {
                 </h2>
 
             </div>
-            
        </header>
     )
 }
