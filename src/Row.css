@@ -1,7 +1,7 @@
 .row__posters {
   display: flex;
   overflow-y: hidden;
-  overflow-x: scroll;
+  overflow-x: auto;
   padding: 20px;
 }
 .row__poster::-webkit-scrollbar {
