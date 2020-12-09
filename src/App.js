@@ -53,7 +53,7 @@ class App extends Component {
       <Row title=  "Comedy movies" fetchUrl = {requests.fetchComedyMovies}/>
       <Row title=  "horror movies" fetchUrl = {requests.fetchHoroorMovies}/>
       <Row title=  "Romance movies" fetchUrl = {requests.fetchRomenceMovies}/>
-  <Row title=  "Documentaries" fetchUrl = {requests.fetchDocumentaries}/>*/}  
+      <Row title=  "Documentaries" fetchUrl = {requests.fetchDocumentaries}/>*/}  
     
      </div>
      
