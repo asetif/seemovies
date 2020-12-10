@@ -6,7 +6,7 @@ import API from "./utils/API.js";
 
 function handleClick(movies){    
     console.log(movies);
-   // if (API.isAuth() === false) {
+    if (API.isAuth() === false) {
     axios.get("http://localhost:8800/favoris/fav").then(response => {
         console.log(response.data)
       })
@@ -21,9 +21,9 @@ function handleClick(movies){
         .catch(() => {
           console.log("Oops, request failed!")
         })
-    /*/}else{
+    }else{
         console.log("tu n'es pas connecter")
-    }/*/
+    }
 }
 
 

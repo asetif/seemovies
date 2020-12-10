@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "./Nav.css";
 import { makeStyles } from "@material-ui/core/styles";
-
+//import { useHistory } from 'react-router-dom';
+import axios from './axios';
 import { Login } from "./components/Login/Login.js";
 import { Signup } from "./components/Signup/Signup.js";
 import Modal from "@material-ui/core/Modal";
@@ -13,17 +14,71 @@ function Nav() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+     
+
     },
     paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
+      display: 'grid',
+      backgroundColor:  "#333",
+      border: "0",
+      color:"#fff",
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
+      margin: "auto",
+      height: "30%",
+      width: "20%",
+      borderRadius: "4px",
+      fontSize: 10,
+   
     },
   }));
     const classes = useStyles();
   const[show, handleShow] = useState(false)
   const [open, setOpen] =React.useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+
+  const isInvalid = password === '' || email === '';
+
+ /* const handleLogin = (event) => {
+    event.preventDefault();
+
+    return Login
+    .auth()
+    .loginWithEmailAndPassword(email, password)
+    .then(() => {
+      history.push("http://localhost:8800/user/login");
+    })
+    .catch((error) => {
+      setEmail('');
+      setPassword('');
+      setError(error.message);
+    })
+   
+  }*/
+  function handleLogin(email, password){    
+    console.log(email, password);
+    axios.get("http://localhost:8800/user/login").then(response => {
+        console.log(response.data)
+      })
+      
+    axios
+        .post("http://localhost:8800/user/login", {
+          email: email,
+          password: password
+        })
+        .then(() => {
+          console.log("Post successful!")
+        })
+        .catch(() => {
+          console.log("Oops, request failed!")
+        })
+    /*/}else{
+        console.log("Le mail ou le mot de passe ne corresponde pas")
+    }/*/
+}
 
   useEffect(() => {
       window.addEventListener("scroll", () => {
@@ -67,14 +122,28 @@ function Nav() {
                         BackdropProps={{
                             timeout: 500
                         }}
-                    >
+                          >
                         <Fade in={open}>
                             <div className={classes.paper}>
-                                <h2 id="transition-modal-title">Transition modal</h2>
-
-                                <p id="transition-modal-description">
-                                    react-transition-group animates me.
-                                </p>
+                                <h2 className="transition-modal-title">Login</h2>
+                                <form  >
+                                <input 
+                                placeholder="Email address"
+                                 value={email}
+                                onChange={({ target }) => setEmail(target.value)}
+                               /> 
+                               <input
+                          
+                                type="password"
+                                value={password}
+                                 autoComplete="off"
+                                 placeholder="Password"
+                                onChange={({ target }) => setPassword(target.value)}
+                               />   
+                                <input className="sign up"></input>
+                                <button className="submit" onSubmit={handleLogin(email, password)}>Submit</button>
+                              </form>
+                    
                             </div>
                         </Fade>
                     </Modal>
