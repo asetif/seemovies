@@ -88,9 +88,7 @@ function Nav() {
             handleShow(false);
         
       }); 
-      return() => {
-          window.removeEventListener("scroll");
-      };
+     
   }, []);
     const handleOpen = () => {
      setOpen(true);
@@ -133,14 +131,13 @@ function Nav() {
                                 onChange={({ target }) => setEmail(target.value)}
                                /> 
                                <input
-                          
                                 type="password"
                                 value={password}
                                  autoComplete="off"
                                  placeholder="Password"
                                 onChange={({ target }) => setPassword(target.value)}
                                />   
-                                <input className="sign up"></input>
+                                <button className="sign up">Sign up</button>
                                 <button className="submit" onSubmit={handleLogin(email, password)}>Submit</button>
                               </form>
                     
