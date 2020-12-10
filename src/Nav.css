@@ -23,30 +23,51 @@
 
 .nav__logo {
   object-fit: contain;
+  /*
   width: 20%;
+  */
   max-height: 31px;
 }
 
-.button{
+.button {
   position: fixed;
   right: 2%;
 }
 
-.register{
+.register {
   position: fixed;
   right: 7%;
 }
 
-.button{
+.button {
   position: fixed;
   right: 2%;
 }
 
-.register{
+.register {
   position: fixed;
   right: 7%;
 }
 .nav__button {
   display: flex;
   object-fit: contain;
+}
+
+.transition-modal-title {
+  color: white;
+}
+
+.login {
+  height: 10;
+}
+.submit {
+  background: #e50914;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 24px 0 12px;
+  padding: 16px;
+  border: 0;
+  color: white;
+  cursor: pointer;
 }
