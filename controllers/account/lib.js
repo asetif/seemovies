@@ -15,6 +15,7 @@ async function signup(req, res) {
     password: passwordHash.generate(password),
     
     
+    
   };
   // On check en base si l'utilisateur existe déjà
   try {
@@ -52,7 +53,6 @@ async function login(req, res) {
   }
 
   try {
-      console.log('theo')
     // On check si l'utilisateur existe en base
     const findUser = await User.findOne({ email });
     if (!findUser)

@@ -1,8 +1,8 @@
 const FavorisModel = require("../../schema/schemaFavori.js");
 const users = require("../../schema/schemaUser.js");
 
-async function favorisInsert(req, res, authtoken) {
-  var user = await users.findOne({ token: authtoken._id})
+async function favorisInsert(req, res, authToken) {
+  var user = await users.findOne({ token: authToken._id})
   const { nameMovies } = req.body;
     const favoris = {
         nameMovies,
