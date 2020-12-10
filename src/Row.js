@@ -10,8 +10,9 @@ const base_url = "http://image.tmdb.org/t/p/original/"
 
 function Row ({title, fetchUrl, isLargeRow }) {
     const [movies, setMovies] = useState([]);
-    const [style, setStyle] = useState("display: none")
-    const [videoURL, setTrailerURL] = useState('');
+    //const [actMovies, setActMovies] = useState();
+    //const [trailerUrl, setTrailerUrl] =useState("");
+    var [videoURL, setTrailerURL] = useState('');
 
     // snippet of code whith runs bases on a spesific condition/variable
     useEffect(() => { 
@@ -96,37 +97,50 @@ function Row ({title, fetchUrl, isLargeRow }) {
                 .catch((error) => console.log(error));
 ;        }
     };*/
+
+
+
+
+
+    function testRowPlayer() {
+        if (videoURL !== "") {
+            return (
+                <div>
+                    <ReactPlayer
+                        url={videoURL}
+                        width="100%"
+                    />
+                </div>
+            );
+        } else {
+            return undefined
+        }
+    }
+
     return (
         <div>
-            <div>
-                <ReactPlayer
-                    url={videoURL}
-                    width="100%"
-                    //style = {style}
-                />
-            </div>
+            { testRowPlayer() }
                 {movies.map((movieArray, i)=>{
                     return (
-                        <div id="row">
+                        <div className="row">
                             <h1>{title[i]}</h1>
                             <div className="row__posters">
                                 {movieArray.map((movie)=>{
                                     return <img
-                                            key={movie.id}
-                                            onClick = {()=>displayTrailer(movie.name, movie.title)}
-                                            className={`row__poster ${isLargeRow && "row_posteLarge"}`} 
-                                            src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`} 
-                                            alt={movie.name}
-                                            >
-                                            </img>
+                                        key={movie.id}
+                                        onClick = {()=>displayTrailer(movie.name, movie.title)}
+                                        className={`row__poster ${isLargeRow && "row_posteLarge"}`}
+                                        src = {`${base_url}${ isLargeRow ? movie.poster_path: movie.backdrop_path}`}
+                                        alt={movie.name}
+                                    >
+                                    </img>
                                 })}
                             </div>
                         </div>
                     )
                 })}
-        </div>
-        /*
-        <div className="row">
+        
+        {/*</div><div className="row">
            <h2>{title}</h2>
 
            <div className="row__posters">
@@ -140,14 +154,15 @@ function Row ({title, fetchUrl, isLargeRow }) {
                       alt={movie.title}
                     />
             ))}
-            </div>
+            {/*</div>
             <ReactPlayer
                 url={videoURL}
                 width="100%"
             />
             
-            </div>
-                */
+            </div>*/}
+        </div>
+                
     );
 }
 

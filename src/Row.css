@@ -4,7 +4,11 @@
   overflow-x: scroll;
   padding: 20px;
 }
-.row__poster::-webkit-scrolbar {
+.row__poster::-webkit-scrollbar {
+  display: none;
+}
+
+.row__player ReactPlayer:empty {
   display: none;
 }
 
@@ -27,18 +31,13 @@
 
 .row__posterLarge {
   max-height: 250px;
+  overflow: visible;
+  z-index: 7;
 }
 
 .row__posterLarge:hover {
   transform: scale(1.09);
   opacity: 1;
-}
-
-#player {
-  display: none;
-}
-.block {
-  display: block;
 }
 
 

@@ -23,7 +23,9 @@
 
 .nav__logo {
   object-fit: contain;
+  /*
   width: 20%;
+  */
   max-height: 31px;
 }
 
@@ -49,4 +51,14 @@
 .nav__button {
   display: flex;
   object-fit: contain;
+}
+.nav__left {
+  display: flex;
+  flex-direction: row;
+}
+.nav__left input {
+  margin-left: 20px;
+  opacity: 75%;
+  border: none;
+  border-radius: 5px;
 }
