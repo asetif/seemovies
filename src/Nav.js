@@ -3,11 +3,11 @@ import "./Nav.css";
 import { makeStyles } from "@material-ui/core/styles";
 //import { useHistory } from 'react-router-dom';
 import axios from './axios';
-import { Login } from "./components/Login/Login.js";
-import { Signup } from "./components/Signup/Signup.js";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import API from "./utils/API";
+
 function Nav() {
   const useStyles = makeStyles((theme) => ({
     modal: {
@@ -35,8 +35,12 @@ function Nav() {
     const classes = useStyles();
   const[show, handleShow] = useState(false)
   const [open, setOpen] =React.useState(false);
+  const [openSingup, setSingup] =React.useState(false);
   const [email, setEmail] = useState('');
+  const [EmailRegister, setEmailRegister] = useState('');
   const [password, setPassword] = useState('');
+  const [PasswordRegister, setPasswordRegister] = useState('');
+  const [Confirmpassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
 
@@ -58,8 +62,7 @@ function Nav() {
     })
    
   }*/
-  function handleLogin(email, password){    
-    console.log(email, password);
+function handleLogin(email, password){    
     axios.get("http://localhost:8800/user/login").then(response => {
         console.log(response.data)
       })
@@ -79,6 +82,41 @@ function Nav() {
         console.log("Le mail ou le mot de passe ne corresponde pas")
     }/*/
 }
+/*/
+function handleRegister(email, password, Confirmpassword){
+  console.log(email, password, Confirmpassword);
+  if (password === Confirmpassword) {
+      axios.get("http://localhost:8800/user/signup").then(response => {
+          console.log(response.data)
+      })
+
+      axios
+          .post("http://localhost:8800/user/signup", {
+              email: email,
+              password: password
+          })
+          .then(() => {
+              console.log("Register Post successful!")
+          })
+          .catch(() => {
+              console.log("Oops, request failed!")
+          })
+  }else{
+      console.log("le mot de passe ne corresponde pas")
+  }
+}/*/
+async function send (email, password, Confirmpassword){
+  if (!email || email.length === 0) return;
+  if (!password || password.length === 0 || password !== Confirmpassword) return;
+  try {
+    const { data } = await API.signup({ email, password });
+    localStorage.setItem("token", data.token);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
 
   useEffect(() => {
       window.addEventListener("scroll", () => {
@@ -90,13 +128,20 @@ function Nav() {
       }); 
      
   }, []);
-    const handleOpen = () => {
+  const handleOpen = () => {
      setOpen(true);
   };
-
+  const handleSingupOpen = () => {
+    setSingup(true);
+ };
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleCloseRegister = () => {
+    setSingup(false);
+  };
+
     return(
         <div className={`nav ${show && "nav__black"}`}>
             <div className="nav_inside">
@@ -107,20 +152,65 @@ function Nav() {
                 />
 
                 <div className="nav__button">
-                    <button className="banner__button" >Sign Up</button>
+                    <button className="banner__button"onClick={handleSingupOpen} >Sign Up</button>
                     <button className="banner__button"onClick={handleOpen}>Login</button>
+
                     <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
                         className={classes.modal}
-                        open={open}
-                        onClose={handleClose}
+                        open={openSingup}
+                        onClose={handleCloseRegister}
                         closeAfterTransition
                         BackdropComponent={Backdrop}
                         BackdropProps={{
                             timeout: 500
                         }}
-                          >
+                        >
+                        <Fade in={openSingup}>
+                          <div className={classes.paper}>
+                              <h2 className="transition-modal-title">Singup</h2>
+                              <form  >
+                              <input 
+                              placeholder="Email address"
+                              value={EmailRegister}
+                              onChange={({ target }) => setEmailRegister(target.value)}
+                             /> 
+
+                             <input
+                              type="password"
+                              value={PasswordRegister}
+                               autoComplete="off"
+                               placeholder="Password"
+                              onChange={({ target }) => setPasswordRegister(target.value)}
+                             />   
+
+                             <input
+                              type="password"
+                              value={Confirmpassword}
+                               autoComplete="off"
+                               placeholder="Confirm Password"
+                              onChange={({ target }) => setConfirmPassword(target.value)}
+                             />   
+                              <button className="submit" onSubmit={send(email, password, Confirmpassword)}>Submit</button>
+                            </form>
+                  
+                          </div>
+                      </Fade>
+                      </Modal>
+                      <Modal
+                          aria-labelledby="transition-modal-title"
+                          aria-describedby="transition-modal-description"
+                          className={classes.modal}
+                          open={open}
+                          onClose={handleClose}
+                          closeAfterTransition
+                          BackdropComponent={Backdrop}
+                          BackdropProps={{
+                              timeout: 500
+                        }}
+                        >
+
                         <Fade in={open}>
                             <div className={classes.paper}>
                                 <h2 className="transition-modal-title">Login</h2>
@@ -137,13 +227,13 @@ function Nav() {
                                  placeholder="Password"
                                 onChange={({ target }) => setPassword(target.value)}
                                />   
-                                <button className="sign up">Sign up</button>
                                 <button className="submit" onSubmit={handleLogin(email, password)}>Submit</button>
                               </form>
                     
                             </div>
                         </Fade>
                     </Modal>
+
                 </div>
             </div>
 

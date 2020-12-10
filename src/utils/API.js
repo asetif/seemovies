@@ -1,7 +1,5 @@
 import axios from "axios";
-const headers = {
-  "Content-Type": "application/json"
-};
+
 const burl = "http://localhost:8800";
 // eslint-disable-next-line 
 export default {
@@ -12,13 +10,10 @@ export default {
         email,
         password
       },
-      {
-        headers: headers
-      }
     );
   },
   signup: function(send) {
-    return axios.post(`${burl}/user/signup`, send, { headers: headers });
+    return axios.post(`http://localhost:8800/user/signup`, send);
   },
 
   isAuth: function() {
