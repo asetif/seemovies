@@ -4,12 +4,12 @@ const passwordHash = require("password-hash");
 async function signup(req, res) {
   const { password, email } = req.body;
   if (!email || !password) {
-    //Le cas où l'email ou bien le password ne serait pas soumit ou nul
+    // case of invalid mail or password
     return res.status(400).json({
       text: "Requête invalide"
     });
   }
-  // Création d'un objet user, dans lequel on hash le mot de passe
+  // Creatin user object where password is hash
   const user = {
     email,
     password: passwordHash.generate(password),
@@ -17,7 +17,7 @@ async function signup(req, res) {
     
     
   };
-  // On check en base si l'utilisateur existe déjà
+  // Check if user already exist
   try {
     const findUser = await User.findOne({
       email

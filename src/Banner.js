@@ -4,6 +4,10 @@ import requests from './Requests';
 import './Banner.css';
 import API from "./utils/API.js";
 
+/**
+ * Plays trailer from banner movie OR add it to favorites for user
+ * @param movies
+ */
 function handleClick(movies){    
     console.log(movies);
     if (API.isAuth() === false) {
@@ -26,7 +30,11 @@ function handleClick(movies){
     }
 }
 
-
+/**
+ * Handle the whole display of the banner
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function Banner() {
     const [movie, setMovie]= useState([]);
 
@@ -43,10 +51,20 @@ function Banner() {
 },[])
    
     console.log(movie)
-   
+
+    /**
+     * Truncate description if it is too long
+     * @param str
+     * @param n
+     * @returns {string|*}
+     */
     function truncate(str, n) {
         return str?.length>n ? str.substr(0, n, -1) + "..." : str;
     }
+
+    /**
+     * return HTML content of banner
+     */
     return(
        <header className= "banner"
            style={{

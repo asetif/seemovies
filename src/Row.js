@@ -54,6 +54,11 @@ function Row ({title, fetchUrl, isLargeRow }) {
     }, []);
 
 
+    /**
+     * use the selected movie to get or not the trailer
+     * @param movieTitle // Netflix originals
+     * @param movieName // others
+     */
     function displayTrailer(movieTitle, movieName) {
         let movieStrID;
         if (movieName !== undefined) {
@@ -107,6 +112,10 @@ function Row ({title, fetchUrl, isLargeRow }) {
         FNCTION RESTE
      */
 
+    /**
+     * Displays the trailer movie but only if a movie is selected in rows
+     * @returns {JSX.Element|undefined}
+     */
     function testRowPlayer() {
         if (videoURL !== "") {
             return (
@@ -122,6 +131,9 @@ function Row ({title, fetchUrl, isLargeRow }) {
         }
     }
 
+    /**
+     * Displays the different movie rows + trailer
+     */
     return (
         <div>
             { testRowPlayer() }

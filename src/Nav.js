@@ -9,7 +9,7 @@ import Fade from "@material-ui/core/Fade";
 import API from "./utils/API";
 
 function Nav() {
-  const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
       alignItems: 'center',
@@ -47,22 +47,11 @@ function Nav() {
 
   const isInvalid = password === '' || email === '';
 
- /* const handleLogin = (event) => {
-    event.preventDefault();
-
-    return Login
-    .auth()
-    .loginWithEmailAndPassword(email, password)
-    .then(() => {
-      history.push("http://localhost:8800/user/login");
-    })
-    .catch((error) => {
-      setEmail('');
-      setPassword('');
-      setError(error.message);
-    })
-   
-  }*/
+  /**
+     * Login  request on db with email and password
+     * @param email
+     * @param password
+     */
   function handleLogin(){    
     console.log(email, password);
     
@@ -81,10 +70,15 @@ function Nav() {
         .catch(() => {
           console.log("Oops, request failed!")
         })
-    /*/}else{
-        console.log("Le mail ou le mot de passe ne corresponde pas")
-    }/*/
+    
 }
+
+/**
+     * Register request on DB only if passWord and confPass are equals
+     * @param email
+     * @param password
+     * @param confPass
+     */
 function send(email, password){    
   console.log(email, password);
   axios.get("http://localhost:8800/user/signup").then(response => {
@@ -102,9 +96,6 @@ function send(email, password){
       .catch(() => {
         console.log("Oops, request failed!")
       })
-  /*/}else{
-      console.log("Le mail ou le mot de passe ne corresponde pas")
-  }/*/
 }
 
   useEffect(() => {
