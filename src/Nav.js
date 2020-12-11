@@ -122,6 +122,9 @@ function send(email, password){
     setSingup(false);
   };
 
+  function disconnect (){
+    API.logout();
+  }
     return(
         <div className={`nav ${show && "nav__black"}`}>
             <div className="nav_inside">
@@ -134,6 +137,7 @@ function send(email, password){
                 <div className="nav__button">
                     <button className="banner__button"onClick={handleSingupOpen} >Sign Up</button>
                     <button className="banner__button"onClick={handleOpen}>Login</button>
+                    <button className="banner__button"onClick={disconnect}>Logout</button>
 
                     <Modal
                         aria-labelledby="transition-modal-title"

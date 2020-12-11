@@ -33,6 +33,7 @@ export default {
    * Remove user local datas
    */
   logout: function() {
+    console.log("on as clear le cookie")
     localStorage.clear();
   }
 };
