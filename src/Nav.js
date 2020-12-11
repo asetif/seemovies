@@ -108,6 +108,7 @@ function send(email, password){
       }); 
      
   }, []);
+  //permet d'ouvrir la popup
   const handleOpen = () => {
      setOpen(true);
   };
@@ -121,7 +122,7 @@ function send(email, password){
   const handleCloseRegister = () => {
     setSingup(false);
   };
-
+//appelle de utils api qui clear les cookies
   function disconnect (){
     API.logout();
   }
