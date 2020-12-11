@@ -46,6 +46,10 @@ class App extends Component {
         fetchUrl={requests}
         isLargeRow={true}
         />
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+        </Switch>
       {/*<Row title = "Trending Now" fetchUrl={requests.fetchTrending}
        isLargeRow={true}/>
       

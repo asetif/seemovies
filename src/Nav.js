@@ -32,7 +32,8 @@ function Nav() {
    
     },
   }));
-    const classes = useStyles();
+
+  const classes = useStyles();
   const[show, handleShow] = useState(false)
   const [open, setOpen] =React.useState(false);
   const [openSingup, setSingup] =React.useState(false);
@@ -62,25 +63,23 @@ function Nav() {
     })
    
   }*/
-function handleLogin(email, password){    
-    axios.get("http://localhost:8800/user/login").then(response => {
-        console.log(response.data)
-      })
-      
+
+const handleLogin = function handleLogin(event){
+    event.preventDefault();
+    const { email, password } = this.state
+ 
     axios
-        .post("http://localhost:8800/user/login", {
-          email: email,
-          password: password
-        })
-        .then(() => {
-          console.log("Post successful!")
-        })
-        .catch(() => {
-          console.log("Oops, request failed!")
-        })
-    /*/}else{
-        console.log("Le mail ou le mot de passe ne corresponde pas")
-    }/*/
+      .post("http://localhost:8800/user/login", {
+        email: email,
+        password: password
+      })
+      .then(() => {
+        console.log("Post successful!")
+      })
+      .catch(() => {
+        console.log("Oops, request failed!")
+      })
+   
 }
 /*/
 function handleRegister(email, password, Confirmpassword){
@@ -105,11 +104,17 @@ function handleRegister(email, password, Confirmpassword){
       console.log("le mot de passe ne corresponde pas")
   }
 }/*/
-async function send (email, password, Confirmpassword){
-  if (!email || email.length === 0) return;
-  if (!password || password.length === 0 || password !== Confirmpassword) return;
+async function send (event){
+  event.preventDefault();
+
+  const { EmailRegister, PasswordRegister, Confirmpassword } = this.state
+  if (!EmailRegister || EmailRegister.length === 0) return;
+  if (!PasswordRegister || PasswordRegister.length === 0 || PasswordRegister !== Confirmpassword) return;
   try {
-    const { data } = await API.signup({ email, password });
+    const { data } = await API.signup({
+      email: EmailRegister,
+      password: PasswordRegister
+    });
     localStorage.setItem("token", data.token);
   } catch (error) {
     console.error(error);
@@ -169,7 +174,7 @@ async function send (email, password, Confirmpassword){
                         >
                         <Fade in={openSingup}>
                           <div className={classes.paper}>
-                              <h2 className="transition-modal-title">Singup</h2>
+                              <h2 className="transition-modal-title">Signup</h2>
                               <form  >
                               <input 
                               placeholder="Email address"
@@ -192,7 +197,7 @@ async function send (email, password, Confirmpassword){
                                placeholder="Confirm Password"
                               onChange={({ target }) => setConfirmPassword(target.value)}
                              />   
-                              <button className="submit" onSubmit={send(email, password, Confirmpassword)}>Submit</button>
+                              <button className="submit" onSubmit={send}>Submit</button>
                             </form>
                   
                           </div>
@@ -210,11 +215,10 @@ async function send (email, password, Confirmpassword){
                               timeout: 500
                         }}
                         >
-
                         <Fade in={open}>
                             <div className={classes.paper}>
                                 <h2 className="transition-modal-title">Login</h2>
-                                <form  >
+                                <form>
                                 <input 
                                 placeholder="Email address"
                                  value={email}
@@ -227,9 +231,10 @@ async function send (email, password, Confirmpassword){
                                  placeholder="Password"
                                 onChange={({ target }) => setPassword(target.value)}
                                />   
-                                <button className="submit" onSubmit={handleLogin(email, password)}>Submit</button>
+                               
+                              <button className="submit" onSubmit={handleLogin}>Submit</button>
+
                               </form>
-                    
                             </div>
                         </Fade>
                     </Modal>
