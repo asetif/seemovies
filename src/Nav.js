@@ -63,13 +63,36 @@ function Nav() {
     })
    
   }*/
-
-const handleLogin = function handleLogin(event){
-    event.preventDefault();
-    const { email, password } = this.state
- 
+  function handleLogin(){    
+    console.log(email, password);
+    
+   axios.get("http://localhost:8800/user/login").then(response => {
+        console.log(response.data)
+      })
+      
     axios
-      .post("http://localhost:8800/user/login", {
+        .post("http://localhost:8800/user/login", {
+          email: email,
+          password: password
+        })
+        .then(() => {
+          console.log("Post successful!")
+        })
+        .catch(() => {
+          console.log("Oops, request failed!")
+        })
+    /*/}else{
+        console.log("Le mail ou le mot de passe ne corresponde pas")
+    }/*/
+}
+function send(email, password){    
+  console.log(email, password);
+  axios.get("http://localhost:8800/user/signup").then(response => {
+      console.log(response.data)
+    })
+    
+  axios
+      .post("http://localhost:8800/user/signup", {
         email: email,
         password: password
       })
@@ -79,49 +102,10 @@ const handleLogin = function handleLogin(event){
       .catch(() => {
         console.log("Oops, request failed!")
       })
-   
+  /*/}else{
+      console.log("Le mail ou le mot de passe ne corresponde pas")
+  }/*/
 }
-/*/
-function handleRegister(email, password, Confirmpassword){
-  console.log(email, password, Confirmpassword);
-  if (password === Confirmpassword) {
-      axios.get("http://localhost:8800/user/signup").then(response => {
-          console.log(response.data)
-      })
-
-      axios
-          .post("http://localhost:8800/user/signup", {
-              email: email,
-              password: password
-          })
-          .then(() => {
-              console.log("Register Post successful!")
-          })
-          .catch(() => {
-              console.log("Oops, request failed!")
-          })
-  }else{
-      console.log("le mot de passe ne corresponde pas")
-  }
-}/*/
-async function send (event){
-  event.preventDefault();
-
-  const { EmailRegister, PasswordRegister, Confirmpassword } = this.state
-  if (!EmailRegister || EmailRegister.length === 0) return;
-  if (!PasswordRegister || PasswordRegister.length === 0 || PasswordRegister !== Confirmpassword) return;
-  try {
-    const { data } = await API.signup({
-      email: EmailRegister,
-      password: PasswordRegister
-    });
-    localStorage.setItem("token", data.token);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-
 
   useEffect(() => {
       window.addEventListener("scroll", () => {
@@ -197,7 +181,7 @@ async function send (event){
                                placeholder="Confirm Password"
                               onChange={({ target }) => setConfirmPassword(target.value)}
                              />   
-                              <button className="submit" onSubmit={send}>Submit</button>
+                              <button className="submit" onClick={() => send}>Submit</button>
                             </form>
                   
                           </div>
@@ -218,23 +202,24 @@ async function send (event){
                         <Fade in={open}>
                             <div className={classes.paper}>
                                 <h2 className="transition-modal-title">Login</h2>
-                                <form>
+                                
                                 <input 
                                 placeholder="Email address"
                                  value={email}
                                 onChange={({ target }) => setEmail(target.value)}
                                /> 
                                <input
+                          
                                 type="password"
                                 value={password}
                                  autoComplete="off"
                                  placeholder="Password"
                                 onChange={({ target }) => setPassword(target.value)}
                                />   
-                               
-                              <button className="submit" onSubmit={handleLogin}>Submit</button>
-
-                              </form>
+                                <input className="sign up"></input>
+                                <button className="submit" disabled={isInvalid} onClick={() => handleLogin(email, password)}>Submit</button>
+                            
+                    
                             </div>
                         </Fade>
                     </Modal>
