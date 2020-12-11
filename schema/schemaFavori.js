@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
-
+/**
+ * Data model for favorites movies for user.
+ * @type {*}
+ */
 const favorisSchema = mongoose.Schema(
   {
     id:{

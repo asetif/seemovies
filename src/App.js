@@ -35,6 +35,9 @@ import { Login } from "./components/Login/Login.js";
 import { Signup } from "./components/Signup/Signup.js";
 import { PrivateRoute } from "./components/PrivateRoute.js";
 
+/**
+ * Render the content of the whole page
+ */
 class App extends Component {
   render() {
   return (

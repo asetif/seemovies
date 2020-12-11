@@ -8,14 +8,19 @@ export class Dashboard extends React.Component {
     API.logout();
     window.location = "/";
   };
-  render() {
-    return (
-      <div className="Dashboard">
-        <h1>Dashboard</h1>
-        <Button onClick={this.disconnect} block bsSize="large" type="submit">
-          Se déconnecter
-        </Button>
-      </div>
-    );
-  }
+
+    /**
+     * Displays dashboard for registered user
+     * @returns {JSX.Element}
+     */
+    render() {
+        return (
+          <div className="Dashboard">
+            <h1>Dashboard</h1>
+            <Button onClick={this.disconnect} block bsSize="large" type="submit">
+              Se déconnecter
+            </Button>
+          </div>
+        );
+    }
 }

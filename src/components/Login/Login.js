@@ -7,13 +7,15 @@ export class Login extends React.Component {
     email: "",
     password: ""
   };
+
+  /**
+   * API call to log user
+   * @returns {Promise<void>}
+   */
   send = async () => {
     const { email, password } = this.state;
-    if (!email || email.length === 0) {
+    if ((!email || email.length === 0) || (!password || password.length === 0)) { //case of invalid parameters
       return; 
-    }
-    if (!password || password.length === 0) {
-      return;
     }
     try {
       const { data } = await API.login(email, password);
@@ -23,14 +25,21 @@ export class Login extends React.Component {
       console.error(error);
     }
   };
+
   handleChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
+  /**
+   * Display login form for unregistered users
+   * @returns {JSX.Element}
+   */
   render() {
     const { email, password } = this.state;
+
+    //return content of display
     return (
       <div className="Login">
         <FormGroup controlId="email" bsSize="large">

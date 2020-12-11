@@ -3,9 +3,12 @@ const passwordHash = require("password-hash");
 const jwt = require("jwt-simple");
 const config = require("../config/configuration");
 
+/**
+ * Data model for registered users
+ * @type {*}
+ */
 const userSchema = mongoose.Schema(
   {
-
     email: {
       type: String,
       lowercase: true,
