@@ -30,7 +30,6 @@ import Row from './Row';
 import Banner from './Banner';
 import Nav from './Nav';
 import { Route, Switch } from "react-router-dom";
-import { Dashboard } from "./components/Dashboard/Dashboard.js";
 import { Login } from "./components/Login/Login.js";
 import { Signup } from "./components/Signup/Signup.js";
 import { PrivateRoute } from "./components/PrivateRoute.js";
@@ -46,10 +45,7 @@ class App extends Component {
         fetchUrl={requests}
         isLargeRow={true}
         />
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-        </Switch>
+    
       {/*<Row title = "Trending Now" fetchUrl={requests.fetchTrending}
        isLargeRow={true}/>
       
