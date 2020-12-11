@@ -31,6 +31,8 @@
 
 .row__posterLarge {
   max-height: 250px;
+  overflow: visible;
+  z-index: 7;
 }
 
 .row__posterLarge:hover {

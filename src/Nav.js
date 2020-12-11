@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import "./Nav.css";
 import { makeStyles } from "@material-ui/core/styles";
-//import { useHistory } from 'react-router-dom';
-import axios from './axios';
+import axios from "./axios";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import { findAllByTestId } from '@testing-library/react';
 import API from "./utils/API";
 
-function Nav() {
-    const useStyles = makeStyles((theme) => ({
+function Nav({ requests, updateSearchedMovie }) {
+  const useStyles = makeStyles((theme) => ({
     modal: {
       display: 'flex',
       alignItems: 'center',
@@ -97,8 +97,34 @@ function send(email, password){
         console.log("Oops, request failed!")
       })
 }
+  const [inputField, setInput] = useState('');
+  const [movies, setMovies] = useState();
+
+  
 
   useEffect(() => {
+
+
+    
+
+
+    async function fetchData() {
+        const arrayObj = Object.values(requests);
+        const arrayResults = [];
+        for (let element of arrayObj){
+            try {
+                var result = await axios.get(element);
+                arrayResults.push(result.data.results);
+            }
+            catch(e){
+                console.log(e.message);
+            }
+        }
+        setMovies(arrayResults);
+        //console.log(arrayResults);
+    }
+    fetchData();
+
       window.addEventListener("scroll", () => {
         if(window.scrollY > 100){
             handleShow(true);
@@ -126,14 +152,42 @@ function send(email, password){
   function disconnect (){
     API.logout();
   }
+  function handleChange(e){
+    const inputValue = (e.target.value);
+    movies.forEach(arrayMovies => {
+        arrayMovies.forEach((movie)=>{
+            if (movie.name){
+                if (movie.name.toLowerCase() == inputValue.toLowerCase()){
+                    console.log("trouvé");
+                    console.log(movie.backdrop_path);
+                    updateSearchedMovie(movie);
+                    return movie.backdrop_path;
+                }
+            }
+            if (movie.title){
+                if (movie.title.toLowerCase() == inputValue.toLowerCase()){
+                    console.log("trouvé");
+                    console.log(movie.backdrop_path);
+                    updateSearchedMovie(movie);
+                    return movie.backdrop_path;
+                }
+            }
+        })
+    });
+}
+
+
     return(
         <div className={`nav ${show && "nav__black"}`}>
             <div className="nav_inside">
-                <img
-                    className="nav__logo"
-                    src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
-                    alt="Netflix logo"
-                />
+                <div className="nav__left">
+                    <img
+                        className="nav__logo"
+                        src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
+                        alt="Netflix logo"
+                    />
+                    <input type="text" placeholder="Search..." onChange={handleChange} />
+                </div>
 
                 <div className="nav__button">
                     <button className="banner__button"onClick={handleSingupOpen} >Sign Up</button>

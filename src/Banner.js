@@ -4,10 +4,6 @@ import requests from './Requests';
 import './Banner.css';
 import API from "./utils/API.js";
 
-/**
- * Plays trailer from banner movie OR add it to favorites for user
- * @param movies
- */
 function handleClick(movies){    
     console.log(movies);
     if (API.isAuth() === false) {
@@ -30,13 +26,10 @@ function handleClick(movies){
     }
 }
 
-/**
- * Handle the whole display of the banner
- * @returns {JSX.Element}
- * @constructor
- */
-function Banner() {
+
+function Banner({ newBackDrop }) {
     const [movie, setMovie]= useState([]);
+    let [searchedMov, setSearchedMov] = useState()
 
     useEffect(() =>{
     async function fetchDtata(){
@@ -49,22 +42,34 @@ function Banner() {
     }
     fetchDtata();
 },[])
-   
-    console.log(movie)
 
-    /**
-     * Truncate description if it is too long
-     * @param str
-     * @param n
-     * @returns {string|*}
-     */
+    useEffect(()=>{
+
+        const test = ()=>{
+            if (newBackDrop.length != 0){
+                console.log("c'est cool");
+                setSearchedMov(newBackDrop);
+            }
+        }
+        test();
+
+    })
+
+    /*const test = ()=>{
+        if (newBackDrop.length != 0){
+            console.log("c'est cool");
+            setSearchedMov(false);
+        }
+    }*/
+    //test();
+
+    console.log(searchedMov);
+   
+
+
     function truncate(str, n) {
         return str?.length>n ? str.substr(0, n, -1) + "..." : str;
     }
-
-    /**
-     * return HTML content of banner
-     */
     return(
        <header className= "banner"
            style={{
@@ -75,7 +80,9 @@ function Banner() {
                backgroundPosition:"center center",
            }}
         >
+            <h1>{searchedMov}</h1>
             <div className="banner__contents">
+
                 <h2 className="banner__title">
                     {movie?.title || movie?.name || movie?.original_name}
                 </h2>

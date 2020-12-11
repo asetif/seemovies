@@ -71,3 +71,13 @@
   color: white;
   cursor: pointer;
 }
+.nav__left {
+  display: flex;
+  flex-direction: row;
+}
+.nav__left input {
+  margin-left: 20px;
+  opacity: 75%;
+  border: none;
+  border-radius: 5px;
+}
